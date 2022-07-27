@@ -1,23 +1,28 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import pinRoute from "./routes/pins.js";
+import cors from "cors";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+dotenv.config();
 
-setupCounter(document.querySelector('#counter'))
+const app = express();
+app.use(cors());
+
+const port = process.env.PORT || 8000;
+
+app.use(express.json());
+//app.use(express.urlencoded());
+
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    //useCreateIndex: true, maybe not needed!
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
+
+app.use("/api/pins", pinRoute);
+
+app.listen(port, () => console.log(`Server is listening on port ${port}.`));
