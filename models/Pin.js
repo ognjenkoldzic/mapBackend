@@ -8,19 +8,19 @@ const PinSchema = new mongoose.Schema(
     // },
     name: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
       max: 60,
     },
     type: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
       max: 60,
     },
     description: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
     },
     indoor: {
@@ -43,16 +43,20 @@ const PinSchema = new mongoose.Schema(
     },
     city: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
     },
     long: {
       type: Number,
-      required: true,
+      //required: true,
     },
     lat: {
       type: Number,
-      required: true,
+      //required: true,
+    },
+    img: {
+      data: Buffer,
+      contentType: String,
     },
   },
   { timestamps: true }

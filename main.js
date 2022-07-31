@@ -7,7 +7,7 @@ import multer from "multer";
 import * as fs from "fs";
 import * as path from "path";
 import bodyParser from "body-parser";
-import ImageModel from "./models/Image.js";
+import ImageModel from "./models/ImageModel.js";
 
 dotenv.config();
 
@@ -95,53 +95,39 @@ mongoose
 
 //----------------------WORKING---------------------------
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-
-//------------------MEMORYSTORAGE------------
-
-// const storage = multer.memoryStorage({
+// const storage = multer.diskStorage({
 //   destination: (req, file, cb) => {
-//     cb(null, "");
+//     cb(null, "uploads");
 //   },
 //   filename: (req, file, cb) => {
 //     cb(null, file.originalname);
 //   },
 // });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
-app.post("/", upload.single("testImage"), (req, res) => {
-  const saveImage = ImageModel({
-    name: req.body.name,
-    img: {
-      data: fs.readFileSync("uploads/" + req.file.filename),
-      contentType: "image/png",
-    },
-  });
-  saveImage
-    .save()
-    .then((res) => {
-      console.log("image is saved");
-    })
-    .catch((err) => {
-      console.log(err, "error has occur");
-    });
-  res.send("image is saved");
-});
+// app.post("/", upload.single("testImage"), (req, res) => {
+//   const saveImage = ImageModel({
+//     name: req.body.name,
+//     img: {
+//       data: fs.readFileSync("uploads/" + req.file.filename),
+//       contentType: "image/png",
+//     },
+//   });
+//   saveImage
+//     .save()
+//     .then((res) => {
+//       console.log("image is saved");
+//     })
+//     .catch((err) => {
+//       console.log(err, "error has occur");
+//     });
+//   res.send("image is saved");
+// });
 
-app.get("/", async (req, res) => {
-  const allData = await ImageModel.find();
-  res.json(allData);
-});
-// app.get("/upload", (req, res) => {
-//   res.render("imagesPage");
+// app.get("/", async (req, res) => {
+//   const allData = await ImageModel.find();
+//   res.json(allData);
 // });
 
 app.use("/api/pins", pinRoute);
