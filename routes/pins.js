@@ -10,7 +10,10 @@ const storage = multer.diskStorage({
     cb(null, "uploads");
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    //const urlEncodedName = encodeURIComponent(file.originalname);
+    const splitup = file.originalname.split(".");
+    const newFilename = Date.now() + "." + splitup[splitup.length - 1];
+    cb(null, newFilename);
   },
 });
 
@@ -30,10 +33,11 @@ router.post("/", upload.single("pinImage"), async (req, res) => {
     lat: req.body.lat,
     // imgName: req.body.name,
     img: {
-      data: fs.readFileSync("uploads/" + req.file.filename),
+      data: fs.readFileSync("uploads/" + req.file.filename), //
       contentType: "image/png",
     },
   });
+
   try {
     const savedPin = await newPin.save();
     res.status(200).json(savedPin);
