@@ -1,8 +1,9 @@
 import express from "express";
-const router = express.Router();
 import Pin from "../models/Pin.js";
 import multer from "multer";
 import * as fs from "fs";
+
+const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -15,8 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-//create a pin
-router.post("/", upload.single("testImage"), async (req, res) => {
+router.post("/", upload.single("pinImage"), async (req, res) => {
   const newPin = new Pin({
     name: req.body.name,
     type: req.body.type,
@@ -28,6 +28,7 @@ router.post("/", upload.single("testImage"), async (req, res) => {
     city: req.body.city,
     long: req.body.long,
     lat: req.body.lat,
+    // imgName: req.body.name,
     img: {
       data: fs.readFileSync("uploads/" + req.file.filename),
       contentType: "image/png",
@@ -40,8 +41,6 @@ router.post("/", upload.single("testImage"), async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-//get all pins
 
 router.get("/", async (req, res) => {
   try {

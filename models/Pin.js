@@ -54,6 +54,12 @@ const PinSchema = new mongoose.Schema(
       type: Number,
       //required: true,
     },
+    // imgName:{
+    //   type: String,
+    //   //required: true,
+    //   min: 3,
+
+    // },
     img: {
       data: Buffer,
       contentType: String,
