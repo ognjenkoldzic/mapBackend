@@ -20,7 +20,7 @@ const PinSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
     },
     indoor: {
@@ -48,11 +48,21 @@ const PinSchema = new mongoose.Schema(
     },
     long: {
       type: Number,
-      required: true,
+      //required: true,
     },
     lat: {
       type: Number,
-      required: true,
+      //required: true,
+    },
+    // imgName:{
+    //   type: String,
+    //   //required: true,
+    //   min: 3,
+
+    // },
+    img: {
+      data: Buffer,
+      contentType: String,
     },
   },
   { timestamps: true }
