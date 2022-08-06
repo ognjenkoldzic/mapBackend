@@ -8,13 +8,13 @@ const PinSchema = new mongoose.Schema(
     // },
     name: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
       max: 60,
     },
     type: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
       max: 60,
     },
@@ -43,7 +43,7 @@ const PinSchema = new mongoose.Schema(
     },
     city: {
       type: String,
-      required: true,
+      //required: true,
       min: 3,
     },
     long: {
