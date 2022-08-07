@@ -60,9 +60,15 @@ const PinSchema = new mongoose.Schema(
     //   min: 3,
 
     // },
-    img: {
-      data: Buffer,
-      contentType: String,
+    // img: {
+    //   data: Buffer,
+    //   contentType: String,
+    //},
+    img_src: {
+      type: String,
+    },
+    cloudinary_id: {
+      type: String,
     },
   },
   { timestamps: true }

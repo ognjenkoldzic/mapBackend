@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8001;
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,6 +22,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
+
     useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connected"))
