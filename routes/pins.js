@@ -1,10 +1,7 @@
 import express from "express";
 import Pin from "../models/Pin.js";
-import multer from "multer";
-import * as fs from "fs";
 import upload from "../utils/multer.js";
 import cloudinary from "../utils/cloudinary.js";
-import * as path from "path";
 import cors from "cors";
 
 const router = express.Router();
