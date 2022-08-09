@@ -1,7 +1,7 @@
 import express from "express";
 import Pin from "../models/Pin.js";
-//import upload from "../utils/multer.js";
-//import cloudinary from "../utils/cloudinary.js";
+import upload from "../utils/multer.js";
+import cloudinary from "../utils/cloudinary.js";
 
 const router = express.Router();
 
