@@ -18,8 +18,8 @@ const router = express.Router();
 // });
 
 // const upload = multer({ storage: storage });
-router.post("/", async (req, res) => {});
-/*
+//router.post("/", async (req, res) => {});
+
 router.post("/", upload.single("pinImage"), async (req, res) => {
   try {
     // Upload image to cloudinary
@@ -42,8 +42,8 @@ router.post("/", upload.single("pinImage"), async (req, res) => {
     res.status(200).json(savedPin);
   } catch (err) {
     res.status(500).json(err);
-  }*/
-//});
+  }
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -57,7 +57,6 @@ router.get("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  /*
   try {
     let newPin = await Pin.findById(req.params.id);
 
@@ -68,10 +67,9 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  */
 });
-router.put("/:id", async (req, res) => {});
-/*
+//router.put("/:id", async (req, res) => {});
+
 router.put("/:id", upload.single("pinImage"), async (req, res) => {
   try {
     let newPin = await Pin.findById(req.params.id);
@@ -102,5 +100,5 @@ router.put("/:id", upload.single("pinImage"), async (req, res) => {
     console.log(err);
   }
 });
-*/
+
 export default router;
