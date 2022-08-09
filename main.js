@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import pinRoute from "./routes/pins.js";
 import cors from "cors";
 import bodyParser from "body-parser";
+import upload from "./utils/multer.js";
 
 dotenv.config();
 
