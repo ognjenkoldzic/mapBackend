@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+// app.use(cors({origins:["http://localhost:5173","your netlify url"]});
 
 const port = process.env.PORT || 8001;
 
@@ -29,5 +30,10 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/pins", pinRoute);
+
+app.get("/", (req, res) => {
+  console.log("HELLO");
+  res.send("hello");
+});
 
 app.listen(port, () => console.log(`Server is listening on port ${port}.`));

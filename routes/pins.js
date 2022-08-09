@@ -45,7 +45,7 @@ router.post("/", upload.single("pinImage"), async (req, res) => {
   }
 });
 
-router.get("/", cors(), async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const pins = await Pin.find();
     res.status(200).json(pins);
