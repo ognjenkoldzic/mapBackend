@@ -1,8 +1,7 @@
 import express from "express";
 import Pin from "../models/Pin.js";
-import upload from "../utils/multer.js";
-import cloudinary from "../utils/cloudinary.js";
-import cors from "cors";
+//import upload from "../utils/multer.js";
+//import cloudinary from "../utils/cloudinary.js";
 
 const router = express.Router();
 
@@ -19,7 +18,8 @@ const router = express.Router();
 // });
 
 // const upload = multer({ storage: storage });
-
+router.post("/", async (req, res) => {});
+/*
 router.post("/", upload.single("pinImage"), async (req, res) => {
   try {
     // Upload image to cloudinary
@@ -42,19 +42,22 @@ router.post("/", upload.single("pinImage"), async (req, res) => {
     res.status(200).json(savedPin);
   } catch (err) {
     res.status(500).json(err);
-  }
+  }*/
 });
 
 router.get("/", async (req, res) => {
   try {
-    const pins = await Pin.find();
+    const pins = await Pin.find({});
     res.status(200).json(pins);
   } catch (err) {
+    console.log(err)
+        console.log(err.message)
     res.status(500).json(err);
   }
 });
 
 router.delete("/:id", async (req, res) => {
+ /*
   try {
     let newPin = await Pin.findById(req.params.id);
 
@@ -65,8 +68,10 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+  */
 });
-
+router.put("/:id", async (req, res) => {});
+/*
 router.put("/:id", upload.single("pinImage"), async (req, res) => {
   try {
     let newPin = await Pin.findById(req.params.id);
@@ -97,5 +102,5 @@ router.put("/:id", upload.single("pinImage"), async (req, res) => {
     console.log(err);
   }
 });
-
+*/
 export default router;
