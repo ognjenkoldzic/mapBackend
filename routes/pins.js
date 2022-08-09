@@ -43,21 +43,21 @@ router.post("/", upload.single("pinImage"), async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }*/
-});
+//});
 
 router.get("/", async (req, res) => {
   try {
     const pins = await Pin.find({});
     res.status(200).json(pins);
   } catch (err) {
-    console.log(err)
-        console.log(err.message)
+    console.log(err);
+    console.log(err.message);
     res.status(500).json(err);
   }
 });
 
 router.delete("/:id", async (req, res) => {
- /*
+  /*
   try {
     let newPin = await Pin.findById(req.params.id);
 
